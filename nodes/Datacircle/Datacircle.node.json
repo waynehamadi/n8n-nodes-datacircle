@@ -1,0 +1,18 @@
+{
+	"node": "n8n-nodes-datacircle",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Sales", "Data & Storage"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://docs.datacircle.dev/quickstart"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://docs.datacircle.dev/linkedin-profile"
+			}
+		]
+	}
+}

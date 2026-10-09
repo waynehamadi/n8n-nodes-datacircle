@@ -1,0 +1,57 @@
+{
+	"name": "n8n-nodes-datacircle",
+	"version": "0.1.0",
+	"description": "n8n node for Datacircle: LinkedIn profiles through Up2Data or HarvestAPI at the provider's own price, with one API key",
+	"license": "MIT",
+	"homepage": "https://datacircle.dev",
+	"keywords": [
+		"n8n-community-node-package",
+		"datacircle",
+		"linkedin",
+		"linkedin-profile",
+		"enrichment",
+		"b2b-data",
+		"up2data",
+		"harvestapi"
+	],
+	"author": {
+		"name": "Datacircle",
+		"email": "wayne@datacircle.dev"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/waynehamadi/n8n-nodes-datacircle.git"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": [
+		"dist"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [
+			"dist/credentials/DatacircleApi.credentials.js"
+		],
+		"nodes": [
+			"dist/nodes/Datacircle/Datacircle.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "*",
+		"eslint": "9.32.0",
+		"prettier": "3.6.2",
+		"release-it": "^21.1.0",
+		"typescript": "5.9.2"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	}
+}
