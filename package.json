@@ -1,5 +1,5 @@
 {
-	"name": "n8n-nodes-datacircle",
+	"name": "@datacircle/n8n-nodes-datacircle",
 	"version": "0.1.1",
 	"description": "n8n node for Datacircle: LinkedIn profiles through Up2Data or HarvestAPI at the provider's own price, with one API key",
 	"license": "MIT",

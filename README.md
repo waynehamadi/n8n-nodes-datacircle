@@ -1,4 +1,4 @@
-# n8n-nodes-datacircle
+# @datacircle/n8n-nodes-datacircle
 
 This is an n8n community node. It lets you use [Datacircle](https://datacircle.dev) in your n8n workflows.
 
@@ -15,7 +15,7 @@ Datacircle is a B2B data API with no markup: one API key and one balance for sev
 
 ## Installation
 
-Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation, with the package name `n8n-nodes-datacircle`.
+Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation, with the package name `@datacircle/n8n-nodes-datacircle`.
 
 ## Operations
 
