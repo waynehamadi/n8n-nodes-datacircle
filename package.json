@@ -1,7 +1,7 @@
 {
 	"name": "@datacircle/n8n-nodes-datacircle",
-	"version": "0.1.2",
-	"description": "n8n node for Datacircle: LinkedIn profiles through Up2Data or HarvestAPI at the provider's own price, with one API key",
+	"version": "0.1.3",
+	"description": "n8n node for Datacircle: LinkedIn profiles through Up2Data, HarvestAPI or Fetchin at the provider's price, with one API key",
 	"license": "MIT",
 	"homepage": "https://datacircle.dev",
 	"keywords": [
@@ -12,7 +12,8 @@
 		"enrichment",
 		"b2b-data",
 		"up2data",
-		"harvestapi"
+		"harvestapi",
+		"fetchin"
 	],
 	"author": {
 		"name": "Datacircle",

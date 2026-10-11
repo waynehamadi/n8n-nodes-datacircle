@@ -1,8 +1,8 @@
 # @datacircle/n8n-nodes-datacircle
 
-This is an n8n community node. It lets you use [Datacircle](https://datacircle.dev) in your n8n workflows.
+The Datacircle n8n node gets a LinkedIn profile from its URL, in a workflow or as an AI agent's tool.
 
-Datacircle is a B2B data API with no markup: one API key and one balance for several data providers, each call at the provider's own price. Every call is live: the provider is asked each time, so you get the profile as it is today.
+Datacircle is a data co-op. You send the provider's own request to api.datacircle.dev, with your Datacircle key. That's the only change. Right now we have 3 live LinkedIn profile APIs that we trust: Up2Data, HarvestAPI and Fetchin. Each request goes to the provider and gets the profile as it is today.
 
 [n8n](https://n8n.io/) is a [fair-code licensed](https://docs.n8n.io/sustainable-use-license/) workflow automation platform.
 
@@ -15,30 +15,29 @@ Datacircle is a B2B data API with no markup: one API key and one balance for sev
 
 ## Installation
 
-Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) in the n8n community nodes documentation, with the package name `@datacircle/n8n-nodes-datacircle`.
+Install @datacircle/n8n-nodes-datacircle from n8n's community nodes, then add your Datacircle key. n8n's [installation guide](https://docs.n8n.io/integrations/community-nodes/installation/) shows how.
 
 ## Operations
 
-- **LinkedIn Profile → Get**: one person's LinkedIn profile by its URL.
-  - Provider **Up2Data** (`POST /v1/profiles/enrich`): the cheapest; a profile it can't find is free (`422`); a daily limit per account (`429`), past it use HarvestAPI.
-  - Provider **HarvestAPI** (`GET /linkedin/profile`): every section of the profile, no daily limit.
-- **Balance → Get** (`GET /balance/`): your balance in dollars, and the credits it holds. Free.
+- **LinkedIn Profile → Get**: one person's LinkedIn profile from its URL, through the provider you pick.
+  - **Up2Data** (`POST /v1/profiles/enrich`): a profile it can't find is free (`422`). Past its daily limit per account it answers `429`: pick Fetchin or HarvestAPI.
+  - **HarvestAPI** (`GET /linkedin/profile`): no daily limit. Only HarvestAPI returns the member's interests.
+  - **Fetchin** (`GET /api/v1/profile`): no daily limit. You pay for a profile it can't find (`404`).
+- **Balance → Get** (`GET /balance/`): your balance in dollars. Free.
 
-Each answer is the provider's own JSON plus `datacircle_meta`: `provider`, `cost_usd` (what this call cost) and `balance_usd` (what is left). Prices: [docs.datacircle.dev/pricing](https://docs.datacircle.dev/pricing).
+Each answer is the provider's JSON plus `datacircle_meta`: `provider`, `cost_usd` (what this call cost) and `balance_usd` (your balance after this call). Prices: [docs.datacircle.dev/pricing](https://docs.datacircle.dev/pricing).
 
 ## Credentials
 
-Sign up at [datacircle.dev](https://datacircle.dev) with your email: your API key is on your dashboard, with a $5 credit. In n8n, create a **Datacircle API** credential and paste the key. n8n checks it against `GET /balance/`.
+Log in at datacircle.dev/login with your work email. Your API key is on the page once you're in. In n8n, create a **Datacircle API** credential and paste the key. n8n checks it against `GET /balance/`.
 
 ## Compatibility
 
-Built with `@n8n/node-cli` and tested on n8n 1.x and 2.x.
+Built with `@n8n/node-cli` 0.51.4 and tested on n8n 2.42.6.
 
 ## Usage
 
-A `402` means your balance can't cover the call: add funds on your dashboard. A `429` from Up2Data is its daily limit: switch the Provider to HarvestAPI. Turn on the node's **Continue On Fail** setting to keep a list running past a profile that can't be fetched.
-
-The node is usable as an AI agent tool.
+A call your balance can't cover answers 402. Add funds, from $5, on your dashboard. A `429` from Up2Data is its daily limit: pick Fetchin or HarvestAPI. A `429` from Fetchin is its rate limit: resend the request a second later, or turn on the node's **Retry On Fail**. Set **On Error** to **Continue** to skip a profile the provider can't fetch and finish the list.
 
 ## Resources
 

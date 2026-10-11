@@ -9,7 +9,7 @@ export class Datacircle implements INodeType {
 		version: 1,
 		subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
 		description:
-			'Get LinkedIn profiles through Up2Data or HarvestAPI at the provider’s own price, with one Datacircle API key',
+			'Get LinkedIn profiles through Up2Data, HarvestAPI or Fetchin at the provider’s price, with one Datacircle API key',
 		defaults: {
 			name: 'Datacircle',
 		},
@@ -59,7 +59,7 @@ export class Datacircle implements INodeType {
 						value: 'get',
 						action: 'Get a profile',
 						description:
-							'Get one person’s LinkedIn profile by its URL, live from the provider; the answer says what the call cost and the balance left',
+							'Get one person’s LinkedIn profile from its URL, live from the provider. The answer says what the call cost and your balance after it.',
 					},
 				],
 				default: 'get',
@@ -109,7 +109,7 @@ export class Datacircle implements INodeType {
 						name: 'Up2Data',
 						value: 'up2data',
 						description:
-							'The cheapest; a profile it can’t find is free (422); a daily limit per account (429), past it use HarvestAPI',
+							'A profile it can’t find is free (422). Past its daily limit per account it answers 429: pick Fetchin or HarvestAPI.',
 						routing: {
 							request: {
 								method: 'POST',
@@ -122,13 +122,26 @@ export class Datacircle implements INodeType {
 					{
 						name: 'HarvestAPI',
 						value: 'harvestapi',
-						description: 'Every section of the profile, no daily limit',
+						description: 'No daily limit. Only HarvestAPI returns the member’s interests.',
 						routing: {
 							request: {
 								method: 'GET',
 								url: '/linkedin/profile',
 								headers: { 'X-Data-Provider': 'harvestapi' },
 								qs: { url: '={{$parameter.url}}' },
+							},
+						},
+					},
+					{
+						name: 'Fetchin',
+						value: 'fetchin',
+						description: 'No daily limit. You pay for a profile Fetchin can’t find (404).',
+						routing: {
+							request: {
+								method: 'GET',
+								url: '/api/v1/profile',
+								headers: { 'X-Data-Provider': 'fetchin' },
+								qs: { profileUrlOrUrn: '={{$parameter.url}}' },
 							},
 						},
 					},
