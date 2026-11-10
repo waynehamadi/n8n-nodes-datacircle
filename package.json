@@ -1,0 +1,58 @@
+{
+	"name": "@datacircle/n8n-nodes-datacircle",
+	"version": "0.2.0",
+	"description": "Find the best GTM APIs in n8n: every API on the Datacircle sheet, who is best for each, every plan and every provider, from the open Datacircle API with no key",
+	"license": "MIT",
+	"homepage": "https://datacircle.dev",
+	"keywords": [
+		"n8n-community-node-package",
+		"datacircle",
+		"gtm",
+		"gtm-apis",
+		"api",
+		"api-pricing",
+		"b2b-data",
+		"data-enrichment"
+	],
+	"author": {
+		"name": "Datacircle",
+		"email": "wayne@datacircle.dev"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/waynehamadi/n8n-nodes-datacircle.git"
+	},
+	"scripts": {
+		"build": "n8n-node build",
+		"build:watch": "tsc --watch",
+		"dev": "n8n-node dev",
+		"lint": "n8n-node lint",
+		"lint:fix": "n8n-node lint --fix",
+		"release": "n8n-node release",
+		"prepublishOnly": "n8n-node prerelease"
+	},
+	"files": [
+		"dist"
+	],
+	"n8n": {
+		"n8nNodesApiVersion": 1,
+		"strict": true,
+		"credentials": [],
+		"nodes": [
+			"dist/nodes/Datacircle/Datacircle.node.js"
+		]
+	},
+	"devDependencies": {
+		"@n8n/node-cli": "*",
+		"eslint": "9.32.0",
+		"prettier": "3.6.2",
+		"release-it": "^21.1.0",
+		"typescript": "5.9.2"
+	},
+	"peerDependencies": {
+		"n8n-workflow": "*"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
